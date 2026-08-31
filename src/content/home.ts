@@ -231,100 +231,20 @@ export const stats: Stat[] = [
   { value: "Nasional", label: "Jangkauan wilayah" },
 ];
 
-export interface TeacherProfile {
-  /** Placeholder name — real named bios need publication consent. */
-  name: string;
-  subject: string;
-  bio: string;
-}
-
 /**
- * PLACEHOLDER teacher profiles. No named public teacher bios exist yet, and
- * internal pengurus names must not be published as marketing without consent.
- * TODO: Replace with real, consented tutor profiles (name, subject, photo).
+ * Teacher, facility, and testimonial data now live in dedicated content modules
+ * so items can be added without touching the UI, and so the homepage sections
+ * and the dedicated `/pengajar`, `/fasilitas`, and `/testimoni` pages share a
+ * SINGLE source of truth. Re-exported here for backward compatibility with the
+ * existing homepage section components.
  */
-export const teachers: TeacherProfile[] = [
-  {
-    name: "Tutor RUBELA",
-    subject: "Tes Potensi Skolastik",
-    bio: "Profil tutor akan ditampilkan setelah data dan persetujuan publikasi tersedia.",
-  },
-  {
-    name: "Tutor RUBELA",
-    subject: "Literasi Bahasa Indonesia & Inggris",
-    bio: "Profil tutor akan ditampilkan setelah data dan persetujuan publikasi tersedia.",
-  },
-  {
-    name: "Tutor RUBELA",
-    subject: "Penalaran Matematika",
-    bio: "Profil tutor akan ditampilkan setelah data dan persetujuan publikasi tersedia.",
-  },
-];
-
-export interface Facility {
-  icon: IconName;
-  title: string;
-  description: string;
-}
-
-export const facilities: Facility[] = [
-  {
-    icon: "presentation",
-    title: "Kelas virtual interaktif",
-    description:
-      "Ruang kelas daring via Zoom/Google Meet dengan materi presentasi yang disiapkan tutor.",
-  },
-  {
-    icon: "book",
-    title: "Bank soal & try out",
-    description:
-      "Kumpulan latihan dan try out bergaya UTBK lengkap dengan pembahasan.",
-  },
-  {
-    icon: "chat",
-    title: "Konseling & pendampingan",
-    description:
-      "Dukungan konseling dan komunitas Sahabat Belajar untuk menjaga semangat mentee.",
-  },
-  {
-    icon: "award",
-    title: "Program beasiswa & webinar",
-    description:
-      "Akses webinar pendidikan gratis dan bimbingan beasiswa dari tutor berpengalaman.",
-  },
-];
-
-export interface Testimonial {
-  /** Placeholder attribution — no real testimonials collected yet. */
-  name: string;
-  role: string;
-  quote: string;
-}
-
-/**
- * PLACEHOLDER testimonials. No real testimonials exist yet.
- * TODO: Replace with real, consented testimonials (name, batch, quote).
- */
-export const testimonials: Testimonial[] = [
-  {
-    name: "Mentee RUBELA",
-    role: "Alumni bimbingan (contoh)",
-    quote:
-      "Testimoni asli dari mentee akan ditampilkan di sini setelah dikumpulkan dan mendapat persetujuan.",
-  },
-  {
-    name: "Mentee RUBELA",
-    role: "Alumni bimbingan (contoh)",
-    quote:
-      "Testimoni asli dari mentee akan ditampilkan di sini setelah dikumpulkan dan mendapat persetujuan.",
-  },
-  {
-    name: "Mentee RUBELA",
-    role: "Alumni bimbingan (contoh)",
-    quote:
-      "Testimoni asli dari mentee akan ditampilkan di sini setelah dikumpulkan dan mendapat persetujuan.",
-  },
-];
+export type { TeacherProfile } from "@/content/teachers";
+export { teachers } from "@/content/teachers";
+export type { FacilityItem } from "@/content/facilities";
+export type { FacilityItem as Facility } from "@/content/facilities";
+export { facilities } from "@/content/facilities";
+export type { Testimonial } from "@/content/testimonials";
+export { testimonials } from "@/content/testimonials";
 
 export interface FaqItem {
   question: string;

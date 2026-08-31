@@ -1,12 +1,18 @@
+import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
-import { Heading } from "@/components/ui/Heading";
+import { buttonClasses } from "@/components/ui/Button";
 import { Reveal } from "@/components/common/Reveal";
-import { Icon } from "@/components/common/Icon";
 import { SectionHeader } from "./SectionHeader";
-import { facilities } from "@/content/home";
+import { FacilityCard } from "./FacilityCard";
+import { featuredFacilities } from "@/content/facilities";
 
-/** "Fasilitas" — what mentees get access to. */
+/**
+ * "Fasilitas" section (homepage).
+ *
+ * Uses the shared `FacilityCard` and the shared facilities data source (curated
+ * subset) so the homepage and the dedicated `/fasilitas` page stay in sync.
+ */
 export function Facilities() {
   return (
     <Section spacing="default" aria-labelledby="facilities-heading">
@@ -17,23 +23,20 @@ export function Facilities() {
           description="Dari kelas virtual hingga pendampingan mental, RUBELA menyediakan ekosistem belajar yang lengkap dan mendukung."
         />
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {facilities.map((facility, index) => (
-            <Reveal
-              as="li"
-              key={facility.title}
-              delay={index * 80}
-              className="flex flex-col gap-3 rounded-2xl border border-border bg-background p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-100 text-accent-700">
-                <Icon name={facility.icon} />
-              </span>
-              <Heading as="h3" size="sm" className="text-lg">
-                {facility.title}
-              </Heading>
-              <p className="text-sm text-neutral-600">{facility.description}</p>
+          {featuredFacilities.map((facility, index) => (
+            <Reveal as="li" key={facility.title} delay={index * 80}>
+              <FacilityCard facility={facility} />
             </Reveal>
           ))}
         </ul>
+        <Reveal as="div" className="flex justify-center">
+          <Link
+            href="/fasilitas"
+            className={buttonClasses({ variant: "outline", size: "md" })}
+          >
+            Lihat semua fasilitas
+          </Link>
+        </Reveal>
       </Container>
     </Section>
   );
