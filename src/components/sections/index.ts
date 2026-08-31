@@ -14,6 +14,14 @@ export { RegistrationCta } from "./RegistrationCta";
 export { Faq } from "./Faq";
 export { ProgramCard } from "./ProgramCard";
 export type { ProgramCardProps } from "./ProgramCard";
+export { TeacherCard } from "./TeacherCard";
+export type { TeacherCardProps } from "./TeacherCard";
+export { FacilityCard } from "./FacilityCard";
+export type { FacilityCardProps } from "./FacilityCard";
+export { AchievementCard } from "./AchievementCard";
+export type { AchievementCardProps } from "./AchievementCard";
+export { TestimonialCard } from "./TestimonialCard";
+export type { TestimonialCardProps } from "./TestimonialCard";
 export {
   ProgramDetailSection,
   DetailList,

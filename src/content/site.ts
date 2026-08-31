@@ -85,13 +85,10 @@ export const siteConfig: SiteConfig = {
     { label: "Beranda", href: "/" },
     { label: "Tentang Kami", href: "/tentang-kami" },
     { label: "Program", href: "/program" },
-    { label: "Keunggulan", href: "/keunggulan" },
-    { label: "Beasiswa", href: "/beasiswa" },
-    { label: "Tim", href: "/tim" },
-    { label: "Cara Bergabung", href: "/cara-bergabung" },
-    { label: "Galeri", href: "/galeri" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Kontak", href: "/kontak" },
+    { label: "Pengajar", href: "/pengajar" },
+    { label: "Fasilitas", href: "/fasilitas" },
+    { label: "Prestasi", href: "/prestasi" },
+    { label: "Testimoni", href: "/testimoni" },
   ],
 };
 
