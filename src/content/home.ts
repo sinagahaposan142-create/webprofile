@@ -8,6 +8,8 @@
  * gallery photos, registration URL).
  */
 
+import { programs } from "@/content/programs";
+
 /** Small identifier used to pick an inline SVG icon in the UI layer. */
 export type IconName =
   | "book"
@@ -108,56 +110,26 @@ export interface ProgramItem {
   description: string;
   /** Short label to categorise the program in the UI. */
   tag: string;
+  /** Slug of the matching program detail page, when one exists. */
+  slug?: string;
 }
 
 /**
- * Curated subset of RUBELA's programs for the homepage. The full catalogue can
- * be added on a dedicated Program page later.
+ * Curated subset of RUBELA's programs for the homepage.
+ *
+ * Derived from the shared program catalogue (`src/content/programs.ts`) so the
+ * homepage and the `/program` pages never drift out of sync. The full
+ * catalogue lives on the dedicated `/program` overview page.
  */
-export const featuredPrograms: ProgramItem[] = [
-  {
-    icon: "calendar",
-    name: "Kelas Intensif Online",
-    description:
-      "Kelas daring rutin setiap hari bersama tutor, dengan materi terstruktur, PPT, serta latihan dan penilaian berkala.",
-    tag: "Kelas rutin",
-  },
-  {
-    icon: "target",
-    name: "Try Out Akbar",
-    description:
-      "Simulasi UTBK skala nasional dengan sistem menyerupai ujian asli, dilengkapi pembahasan dan analisis hasil.",
-    tag: "Simulasi",
-  },
-  {
-    icon: "chart",
-    name: "Try Out Mini",
-    description:
-      "Try out rutin berskala kecil sebagai alat diagnostik untuk memetakan perkembangan belajar secara berkala.",
-    tag: "Diagnostik",
-  },
-  {
-    icon: "award",
-    name: "Webinar Indonesia Beasiswa (WIB)",
-    description:
-      "Webinar seputar strategi memburu beasiswa dalam dan luar negeri langsung dari narasumber berpengalaman.",
-    tag: "Beasiswa",
-  },
-  {
-    icon: "compass",
-    name: "Coaching Motivasi & Mental",
-    description:
-      "Pendampingan motivasi dan persiapan mental agar mentee tetap tangguh dan fokus sepanjang persiapan UTBK.",
-    tag: "Pendampingan",
-  },
-  {
-    icon: "users",
-    name: "Peer Help & Sahabat Belajar",
-    description:
-      "Belajar bersama teman sebaya dan pendampingan emosional agar tidak ada mentee yang berjuang sendirian.",
-    tag: "Komunitas",
-  },
-];
+export const featuredPrograms: ProgramItem[] = programs
+  .slice(0, 6)
+  .map((program) => ({
+    icon: program.icon,
+    name: program.name,
+    description: program.summary,
+    tag: program.tag,
+    slug: program.slug,
+  }));
 
 /** "Mengapa RUBELA" — the 11 keunggulan condensed for scannability. */
 export const advantages: ValueItem[] = [
