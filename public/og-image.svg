@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RUBELA default social share image (OpenGraph / Twitter card).
+  Placeholder at the standard 1200x630 ratio.
+  TODO: Replace this with the final brand social-share asset
+  (ideally an optimised 1200x630 PNG/JPG) once available.
+-->
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RUBELA">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#166534"/>
+      <stop offset="1" stop-color="#15803d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="80" y="470" width="120" height="10" rx="5" fill="#fbbf24"/>
+  <text x="80" y="300" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif" font-size="120" font-weight="800" fill="#ffffff">RUBELA</text>
+  <text x="80" y="380" font-family="'Inter', 'Segoe UI', system-ui, sans-serif" font-size="40" font-weight="500" fill="#dcfce7">Bimbingan Belajar UTBK / SNBT</text>
+</svg>

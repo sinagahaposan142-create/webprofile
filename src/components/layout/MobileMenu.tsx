@@ -20,6 +20,8 @@ export interface MobileMenuProps {
  *
  * - Closes on `Escape` and on backdrop click.
  * - Moves focus to the panel on open and restores it to the trigger on close.
+ * - Traps Tab / Shift+Tab focus within the panel so keyboard and
+ *   screen-reader users cannot reach the inert page behind the backdrop.
  * - Locks body scroll while open.
  * - Uses a CSS transition that the global `prefers-reduced-motion` block
  *   automatically neutralises.
@@ -32,14 +34,59 @@ export function MobileMenu({ open, onClose, id }: MobileMenuProps) {
   useEffect(() => {
     if (!open) return;
 
+    const panel = panelRef.current;
+
     previouslyFocused.current = document.activeElement as HTMLElement | null;
-    panelRef.current?.focus();
+    panel?.focus();
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
+    /** Currently focusable, visible elements inside the panel. */
+    const getFocusable = () => {
+      if (!panel) return [] as HTMLElement[];
+      const selector =
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+      return Array.from(
+        panel.querySelectorAll<HTMLElement>(selector),
+      ).filter(
+        (el) =>
+          !el.hasAttribute("disabled") &&
+          el.getAttribute("aria-hidden") !== "true",
+      );
+    };
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = getFocusable();
+      if (focusable.length === 0) {
+        // Keep focus on the panel itself when there is nothing to tab to.
+        event.preventDefault();
+        panel?.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (event.shiftKey) {
+        // Wrap from the first element (or the panel) back to the last.
+        if (active === first || active === panel || !panel?.contains(active)) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (active === last) {
+        // Wrap from the last element back to the first.
+        event.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener("keydown", onKeyDown);
 

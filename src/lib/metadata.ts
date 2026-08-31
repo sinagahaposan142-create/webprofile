@@ -11,6 +11,24 @@ export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://rubela.example";
 
 /**
+ * Default social share image (OpenGraph / Twitter card).
+ *
+ * Uses a relative path resolved against {@link baseMetadata.metadataBase}, so
+ * it works across environments without hard-coding a production domain.
+ *
+ * TODO: Replace `public/og-image.svg` with the final brand asset — ideally an
+ * optimised 1200x630 PNG/JPG (`/og-image.png`) for best cross-platform preview
+ * support — then update the `url`/`type` below to match.
+ */
+export const defaultOgImage = {
+  url: "/og-image.svg",
+  width: 1200,
+  height: 630,
+  alt: `${siteConfig.name} — ${siteConfig.fullName}`,
+  type: "image/svg+xml",
+};
+
+/**
  * Base metadata shared across every route. Individual pages extend or override
  * fields via {@link createMetadata}.
  */
@@ -38,11 +56,13 @@ export const baseMetadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} — ${siteConfig.fullName}`,
     description: siteConfig.shortDescription,
+    images: [defaultOgImage],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.fullName}`,
     description: siteConfig.shortDescription,
+    images: [defaultOgImage.url],
   },
   robots: {
     index: true,
