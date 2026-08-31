@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { AnnouncementBar } from "@/components/sections/AnnouncementBar";
 import { JsonLd } from "@/components/common/JsonLd";
 import { baseMetadata } from "@/lib/metadata";
 
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Lewati ke konten utama
         </a>
+        <AnnouncementBar />
         <Navbar />
         <main id="main-content" className="flex flex-1 flex-col">
           {children}

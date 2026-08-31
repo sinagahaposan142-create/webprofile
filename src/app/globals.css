@@ -188,6 +188,55 @@
 }
 
 /* =============================================================================
+ * MOTION — scroll reveals + subtle ambient float.
+ * -----------------------------------------------------------------------------
+ * `.reveal` elements start hidden/offset and transition to their resting state
+ * once JS adds `[data-visible="true"]` (see Reveal.tsx). All motion is disabled
+ * under `prefers-reduced-motion` in the block below.
+ * ========================================================================== */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transition-property: opacity, transform;
+    transition-duration: 600ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-fade-up {
+    transform: translateY(24px);
+  }
+
+  .reveal-scale {
+    transform: scale(0.96);
+  }
+
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Ambient floating for decorative hero elements. */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 9s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* =============================================================================
  * REDUCED MOTION — respect users who prefer less animation.
  * ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
@@ -202,5 +251,11 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Keep reveal content fully visible when motion is reduced. */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
