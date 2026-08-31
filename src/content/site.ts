@@ -83,7 +83,7 @@ export const siteConfig: SiteConfig = {
   },
   navLinks: [
     { label: "Beranda", href: "/" },
-    { label: "Tentang", href: "/tentang" },
+    { label: "Tentang Kami", href: "/tentang-kami" },
     { label: "Program", href: "/program" },
     { label: "Keunggulan", href: "/keunggulan" },
     { label: "Beasiswa", href: "/beasiswa" },
